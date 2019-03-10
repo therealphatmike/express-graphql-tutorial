@@ -1,6 +1,9 @@
-import express from "express";
-import graphqlHTTP from "express-graphql";
-import buildSchema from "graphql";
+// import express from "express";
+// import graphqlHTTP from "express-graphql";
+// import buildSchema from "graphql";
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const { buildSchema } = require("graphql");
 
 // Construct schema using graphql schema lang
 const schema = buildSchema(`
