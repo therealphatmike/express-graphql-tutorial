@@ -1,6 +1,6 @@
 import express from "express";
 import graphqlHTTP from "express-graphql";
-import { graphql, buildSchema } from "graphql";
+import buildSchema from "graphql";
 
 // Construct schema using graphql schema lang
 const schema = buildSchema(`
@@ -16,7 +16,13 @@ const root = {
     }
 };
 
-// Run the graphql query { hello } and print out the response
-graphql(schema, '{ hello }', root).then((response) => {
-    console.log(response);
-});
+const app = express();
+
+app.use("/graphql", graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+}));
+app.listen(4000);
+
+console.log('Running graphQL API on localhost:4000/graphql');
