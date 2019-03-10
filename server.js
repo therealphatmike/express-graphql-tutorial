@@ -1,14 +1,16 @@
-var { graphql, buildSchema } = require("graphql");
+import express from "express";
+import graphqlHTTP from "express-graphql";
+import { graphql, buildSchema } from "graphql";
 
 // Construct schema using graphql schema lang
-var schema = buildSchema(`
+const schema = buildSchema(`
     type Query {
         hello: String
     }
 `);
 
 // The root provides a resolver function for each API endpoint
-var root = {
+const root = {
     hello: () => {
         return 'Hello, world!';
     }
